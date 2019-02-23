@@ -20,7 +20,7 @@ class DirectServer
     /**
      * @return DirectServer
      */
-    public function Get()
+    public function get()
     {
         return new self();
     }
@@ -31,18 +31,18 @@ class DirectServer
      * @return string
      * @throws EmptyDirectServerFilterException
      */
-    public static function Server(array $array, int $filter = null)
+    public static function server(array $array, int $filter = null)
     {
         if (!empty($array[0]) && !empty($array[1])) {
             header('Content-Type: application/json');
             if (!empty($filter)) {
                 switch ($filter) {
                     case DirectServerFilter::PLAYERS;
-                        $request = self::HttpRequest($array[0], $array[1], self::PLAYERS);
+                        $request = self::httpRequest($array[0], $array[1], self::PLAYERS);
                         return $request;
                         break;
                     case DirectServerFilter::SERVER_INFO;
-                        $request = self::HttpRequest($array[0], $array[1], self::INFO);
+                        $request = self::httpRequest($array[0], $array[1], self::INFO);
                         return $request;
                         break;
                 }
@@ -64,7 +64,7 @@ class DirectServer
      * @param $type
      * @return \Psr\Http\Message\StreamInterface
      */
-    private static function HttpRequest($ip, $port, $type)
+    private static function httpRequest($ip, $port, $type)
     {
         $client = new Client([
             'timeout' => 6.0,

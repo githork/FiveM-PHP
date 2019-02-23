@@ -19,11 +19,11 @@ DirectServerFilter [PLAYERS, SERVER_INFO]
 ## Get specific server information from FiveM Masterlist
 
 ```php
-echo (new Serverslist)->Get()->Server(['149.202.65.148', 30120], ServerFilter::EMPTY);
+echo (new Serverslist)->get()->server(['149.202.65.148', 30120], ServerFilter::EMPTY);
 ```
 ```php
 try {
-    echo (new Serverslist)->Get()->Global(ServerlistFilter::EMPTY);
+    echo (new Serverslist)->get()->global(ServerlistFilter::EMPTY);
 } catch (Exception $e) {
 }
 ```
@@ -31,7 +31,7 @@ try {
 ## Get specific server information with direct connect
 ```php
 try {
-    echo (new DirectServer())->Get()->Server(["149.202.65.148", 30120], DirectServerFilter::SERVER_INFO);
+    echo (new DirectServer())->get()->server(["149.202.65.148", 30120], DirectServerFilter::SERVER_INFO);
 } catch (EmptyDirectServerFilterException $e) {
 }
 ```

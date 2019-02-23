@@ -19,7 +19,7 @@ class Serverslist
     /**
      * @return Serverslist
      */
-    public static function Get()
+    public static function get()
     {
         return new self();
     }
@@ -30,28 +30,28 @@ class Serverslist
      * @param int $filter
      * @return string
      */
-    public static function Server(array $array, int $filter = null)
+    public static function server(array $array, int $filter = null)
     {
         if (!empty($array[0]) && !empty($array[1])) {
-            $request = self::HttpRequest();
+            $request = self::httpRequest();
             header('Content-Type: application/json');
             if (!empty($filter)) {
                 switch ($filter) {
                     case ServerFilter::GET_PLAYER:
-                        return \GuzzleHttp\json_encode(self::FilterServer($request, $array[0], $array[1])->Data->players);
+                        return \GuzzleHttp\json_encode(self::filterServer($request, $array[0], $array[1])->Data->players);
                         break;
                     case ServerFilter::GET_RESOURCES:
-                        return \GuzzleHttp\json_encode(self::FilterServer($request, $array[0], $array[1])->Data->resources);
+                        return \GuzzleHttp\json_encode(self::filterServer($request, $array[0], $array[1])->Data->resources);
                         break;
                     case ServerFilter::GET_VARS:
-                        return \GuzzleHttp\json_encode(self::FilterServer($request, $array[0], $array[1])->Data->vars);
+                        return \GuzzleHttp\json_encode(self::filterServer($request, $array[0], $array[1])->Data->vars);
                         break;
                     case ServerFilter::EMPTY;
-                        return \GuzzleHttp\json_encode(self::FilterServer($request, $array[0], $array[1])->Data);
+                        return \GuzzleHttp\json_encode(self::filterServer($request, $array[0], $array[1])->Data);
                         break;
                 }
             } else {
-                return \GuzzleHttp\json_encode(self::FilterServer($request, $array[0], $array[1])->Data);
+                return \GuzzleHttp\json_encode(self::filterServer($request, $array[0], $array[1])->Data);
             }
         } else {
             header('Content-Type: application/json');
@@ -67,20 +67,20 @@ class Serverslist
      * @return int|string
      * @throws Exception
      */
-    public static function Global($filter = null)
+    public static function global($filter = null)
     {
-        $request = self::HttpRequest();
+        $request = self::httpRequest();
         if (!empty($filter)) {
             header('Content-Type: application/json');
             switch ($filter) {
                 case ServerlistFilter::GET_PLAYER:
-                    return self::FilterCount($request, ['players']);
+                    return self::filterCount($request, ['players']);
                     break;
                 case ServerlistFilter::GET_RESOURCES:
-                    return self::FilterCount($request, ['resources']);
+                    return self::filterCount($request, ['resources']);
                     break;
                 case ServerlistFilter::GET_SERVERS:
-                    return self::FilterCount($request);
+                    return self::filterCount($request);
                     break;
                 case ServerlistFilter::EMPTY;
                     return $request;
@@ -99,7 +99,7 @@ class Serverslist
      * @return int|mixed
      * @throws Exception
      */
-    private static function FilterCount($request, $array = null)
+    private static function filterCount($request, $array = null)
     {
         $collect = collect([]);
         $playersOnlineCount = 0;
@@ -127,7 +127,7 @@ class Serverslist
      * @param $port
      * @return mixed
      */
-    private static function FilterServer($request, $ip, $port)
+    private static function filterServer($request, $ip, $port)
     {
         $collect = collect([]);
         $array_value = \GuzzleHttp\json_decode($request);
@@ -144,7 +144,7 @@ class Serverslist
     /**
      * @return \Psr\Http\Message\StreamInterface
      */
-    private static function HttpRequest()
+    private static function httpRequest()
     {
         $client = new Client([
             'timeout' => 6.0,
