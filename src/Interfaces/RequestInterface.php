@@ -5,15 +5,35 @@ namespace FiveM;
 interface RequestInterface
 {
 
-    // public function status();
+    /**
+     * @return mixed
+     */
+    public function status();
 
+    /**
+     * @return mixed
+     */
     public function get();
 
-    // public function getPlayers();
+    /**
+     * @return mixed
+     */
+    public function getPlayers();
 
-    // public function getResources();
+    /**
+     * @return mixed
+     */
+    public function getResources();
 
-    // public function getInfos();
+    /**
+     * @return mixed
+     */
+    public function getInfos();
+
+    /**
+     * @return mixed
+     */
+    public function getRequest();
 
 
 }

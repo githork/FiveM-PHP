@@ -20,13 +20,21 @@ class FiveM
         $this->server_port = $server_port;
     }
 
+
     /**
      * @param array|null $array
      * @return FiveM
      */
     public function target(array $array = null)
     {
-        return !empty($array[0]) && !empty($array[1]) ? new self($array[0], $array[1]) : new self($this->server_address, $this->server_port);
+        if (!empty($array[0]) && !empty($array[1])) {
+            return new self($array[0], $array[1]);
+        } elseif (!empty($this->server_address) && !empty($this->server_port)) {
+            return new self($this->server_address, $this->server_port);
+        } else {
+            return new self("127.0.0.1", 30120);
+        }
+        //return !empty($array[0]) && !empty($array[1]) ? new self($array[0], $array[1]) : new self($this->server_address, $this->server_port);
     }
 
     /**
