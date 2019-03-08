@@ -6,32 +6,32 @@ interface RequestInterface
 {
 
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function status();
 
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function get();
 
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function getPlayers();
 
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function getResources();
 
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function getInfos();
 
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function getRequest();
 

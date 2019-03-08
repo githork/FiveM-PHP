@@ -29,7 +29,7 @@ class ServersList implements RequestInterface
 
 
     /**
-     * @return mixed
+     * @return bool|false|mixed|string
      */
     public function get()
     {

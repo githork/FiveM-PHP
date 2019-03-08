@@ -2,8 +2,12 @@
 
 namespace FiveM;
 
+use HttpClient;
+
 class DirectConnect implements RequestInterface
 {
+
+    const HTTP_HEADER = "Content-Type: application/json";
 
     const PLAYERS = "/players.json";
 
@@ -12,7 +16,6 @@ class DirectConnect implements RequestInterface
     private $_serverPort;
 
     private $_serverAddress;
-
 
     /**
      * DirectConnect constructor.
@@ -25,47 +28,73 @@ class DirectConnect implements RequestInterface
         $this->_serverPort = $serverPort;
     }
 
-    public function status()
-    {
-        // TODO: Implement status() method.
-        return 0;
-    }
-
-    public function get()
-    {
-        // TODO: Implement get() method.
-        return 0;
-    }
 
     /**
-     * @return mixed
+     * @return false|mixed|string
+     */
+    public function status()
+    {
+        header(self::HTTP_HEADER);
+        return json_encode([
+            'status_code' => (new HttpClient())->get($this->_serverAddress . ":" . $this->_serverPort . self::INFO)->getStatusCode()
+        ]);
+    }
+
+
+    /**
+     * @return false|mixed|string
+     */
+    public function get()
+    {
+        $infoRequest = (new HttpClient())->get($this->_serverAddress . ":" . $this->_serverPort . self::INFO)->getBody()->getContents();
+        $playersRequest = (new HttpClient())->get($this->_serverAddress . ":" . $this->_serverPort . self::PLAYERS)->getBody()->getContents();
+        header(self::HTTP_HEADER);
+        return json_encode([
+            'info' => json_decode($infoRequest),
+            'players' => json_decode($playersRequest)
+        ]);
+    }
+
+
+    /**
+     * @return false|mixed|string
      */
     public function getPlayers()
     {
-        // TODO: Implement getPlayers() method.
+        $request = self::get();
+        header(self::HTTP_HEADER);
+        return json_encode(json_decode($request)->players);
     }
 
+
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function getResources()
     {
-        // TODO: Implement getResources() method.
+        $request = self::get();
+        header(self::HTTP_HEADER);
+        return json_encode(json_decode($request)->info->resources);
     }
 
+
     /**
-     * @return mixed
+     * @return false|mixed|string
      */
     public function getInfos()
     {
-        // TODO: Implement getInfos() method.
+        $request = self::get();
+        header(self::HTTP_HEADER);
+        return json_encode(json_decode($request)->info);
     }
 
+
     /**
-     * @return mixed
+     * @return \InvalidFeatureException|mixed
      */
     public function getRequest()
     {
-        // TODO: Implement getRequest() method.
+        return new \InvalidFeatureException('Invalid feature.');
     }
+
 }

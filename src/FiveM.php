@@ -34,7 +34,6 @@ class FiveM
         } else {
             return new self("127.0.0.1", 30120);
         }
-        //return !empty($array[0]) && !empty($array[1]) ? new self($array[0], $array[1]) : new self($this->server_address, $this->server_port);
     }
 
     /**
@@ -45,12 +44,13 @@ class FiveM
         return new ServersList($this->server_address, $this->server_port);
     }
 
+
     /**
-     * @return int
+     * @return DirectConnect
      */
     public function fromDirectConnect()
     {
-        return 404;
+        return new DirectConnect($this->server_address, $this->server_port);
     }
 
     /**
