@@ -9,31 +9,19 @@
 Pull in the project using composer:
 `composer require itexzoz/fivem-php`
 
-### Constants
-```
-ServerFilter [ EMPTY, GET_PLAYER, GET_RESOURCES, GET_VARS]
 
-ServerlistFilter [EMPTY, GET_PLAYER, GET_RESOURCES, GET_SERVERS]
-
-DirectServerFilter [PLAYERS, SERVER_INFO]
-```
-
-## Get specific server information from FiveM Masterlist
-
+ServerList
 ```php
-echo (new Serverslist)->get()->server(['149.202.65.148', 30120], ServerFilter::EMPTY);
-```
-```php
-try {
-    echo (new Serverslist)->get()->global(ServerlistFilter::EMPTY);
-} catch (Exception $e) {
-}
+//echo (new FiveM())->target(['149.202.65.148', 30130])->fromServersList()->get();
+//echo (new FiveM())->target(['149.202.65.148', 30130])->fromServersList()->getPlayers();
+//echo (new FiveM())->target(['149.202.65.148', 30130])->fromServersList()->getInfos();
+//echo (new FiveM())->target(['149.202.65.148', 30130])->fromServersList()->getResources();
+//echo (new FiveM())->target(['149.202.65.148', 30130])->fromServersList()->getRequest(); // GuzzleHttp
+//echo (new FiveM())->target(['149.202.65.148', 30130])->fromServersList()->findPlayer();
+//echo (new FiveM())->target()->fromServersList()->findPlayer(['discord', 150336961867939840]);
 ```
 
-## Get specific server information with direct connect
+DirectConnect
 ```php
-try {
-    echo (new DirectServer())->get()->server(["149.202.65.148", 30120], DirectServerFilter::SERVER_INFO);
-} catch (EmptyDirectServerFilterException $e) {
-}
+
 ```

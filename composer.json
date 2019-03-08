@@ -1,7 +1,7 @@
 {
   "name": "itexzoz/fivem-php",
   "license": "MIT",
-  "description": "FiveM-PHP is a library for quick use of the server APIs available on FiveM \uD83D\uDC0C",
+  "description": "FiveM-PHP is a library for quick use of the server APIs available on FiveM 🐌",
   "homepage": "https://github.com/iTexZoz/FiveM-PHP",
   "keywords": [
     "fivem",
@@ -18,6 +18,7 @@
   "require": {
     "php": ">=7.0",
     "guzzlehttp/guzzle": "^6.3@dev",
-    "tightenco/collect": "^5.7@dev"
+    "tightenco/collect": "^5.7@dev",
+    "ext-json": "*"
   }
 }
