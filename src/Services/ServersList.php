@@ -112,24 +112,39 @@ class ServersList implements RequestInterface
 
     /**
      * @param array $array
-     * @return Collection
+     * @return array|bool|\Illuminate\Support\Collection|Collection
      */
     public function findPlayer(array $array)
     {
-        $collect = collect([]);
-        $array_value = json_decode((new HttpClient())->get(self::SERVERS_LIST)->getBody()->getContents());
-        for ($i = 0; $i < count($array_value); ++$i) {
-            for ($x = 0; $x < count($array_value[$i]->Data->players); ++$x) {
-                for ($z = 0; $z < count($array_value[$i]->Data->players[$x]->identifiers); ++$z) {
-                    if ($array_value[$i]->Data->players[$x]->identifiers[$z] == $array[0] . ':' . $array[1]) {
-                        $collect->push($array_value[$i]->Data);
+        if (!empty($array) && !empty($array[0]) && !empty($array[1])) {
+            if ($array[0] == "steam" || $array[0] == "discord" || $array[0] == "xb1" || $array[0] == "live" || $array[0] == "license") {
+                $collect = collect([]);
+                $array_value = json_decode((new HttpClient())->get(self::SERVERS_LIST)->getBody());
+                for ($i = 0; $i < count($array_value); ++$i) {
+                    for ($x = 0; $x < count($array_value[$i]->Data->players); ++$x) {
+                        for ($z = 0; $z < count($array_value[$i]->Data->players[$x]->identifiers); ++$z) {
+                            if ($array_value[$i]->Data->players[$x]->identifiers[$z] == $array[0] . ':' . $array[1]) {
+                                $collect->push($array_value[$i]->Data);
+                            }
+                        }
                     }
                 }
+                header(self::HTTP_HEADER);
+                return $collect;
+            } else {
+                return [
+                    'valid-search-parameter' => [
+                        'steam',
+                        'discord',
+                        'xb1',
+                        'live',
+                        'license',
+                    ]
+                ];
             }
+        } else {
+            return false;
         }
-        header(self::HTTP_HEADER);
-        return $collect;
     }
-
 
 }
