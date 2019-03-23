@@ -8,8 +8,6 @@ Pull in the project using composer:
 `composer require itexzoz/fivem-php`
 
 
-### Who to use ?
-
 - From servers list 
 ```php
 (new FiveM())->target(['149.202.65.148', 30130])->fromServersList()->status();
