@@ -31,6 +31,7 @@ class HttpClient
         try {
             return $client->request('GET', $path);
         } catch (GuzzleException $e) {
+            throw new Exception;
         }
     }
 
