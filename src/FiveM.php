@@ -44,7 +44,7 @@ class FiveM extends HttpClient implements Methods
      */
     public function all(bool $pretty = true): array
     {
-        // TODO: Implement get() method.
+        return [];
     }
 
     /**

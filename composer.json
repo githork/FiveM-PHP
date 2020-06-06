@@ -2,6 +2,7 @@
     "name": "dylan-malandain/fivem-php",
     "description": "FiveM PHP Is small PHP FiveM API Wrapper",
     "type": "library",
+    "license": "MIT",
     "require": {
         "tightenco/collect": "^7.12",
         "guzzlehttp/guzzle": "^6.5",
