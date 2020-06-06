@@ -1,29 +1,18 @@
 {
-    "name": "dylan_malandain/fivem-php",
-    "description": "FiveM PHP Is basic wrapper",
-    "keywords": ["fivem", "cfx", "utils"],
-    "license": "GNU",
+    "name": "dylan-malandain/fivem-php",
+    "description": "FiveM PHP Is small PHP FiveM API Wrapper",
+    "type": "library",
     "require": {
-        "php": "^7.2"
+        "tightenco/collect": "^7.12",
+        "guzzlehttp/guzzle": "^6.5"
     },
+    "authors": [
+        {
+            "name": "iTexZoz",
+            "email": "contact@dylan-malandain.io"
+        }
+    ],
     "require-dev": {
-        "phpunit/phpunit": "^7.0",
-        "friendsofphp/php-cs-fixer": "^2.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Vendor\\Package\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Vendor\\Package\\": "tests"
-        }
-    },
-    "config": {
-        "platform": {
-            "php": "7.2"
-        },
-        "sort-packages": true
+        "phpstan/phpstan": "^0.12.25"
     }
 }
