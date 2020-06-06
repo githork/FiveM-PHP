@@ -1,8 +1,8 @@
 {
-    "name": "kreait/php-boilerplate",
-    "description": "A boilerplate for new composer based PHP projects.",
-    "keywords": ["boilerplate", "skeleton"],
-    "license": "MIT",
+    "name": "dylan_malandain/fivem-php",
+    "description": "FiveM PHP Is basic wrapper",
+    "keywords": ["fivem", "cfx", "utils"],
+    "license": "GNU",
     "require": {
         "php": "^7.2"
     },
