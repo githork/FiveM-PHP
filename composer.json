@@ -1,24 +1,29 @@
 {
-  "name": "itexzoz/fivem-php",
-  "license": "MIT",
-  "description": "FiveM-PHP is a library for quick use of the server APIs available on FiveM 🐌",
-  "homepage": "https://github.com/iTexZoz/FiveM-PHP",
-  "keywords": [
-    "fivem",
-    "api",
-    "php"
-  ],
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "autoload": {
-    "classmap": [
-      "src/"
-    ]
-  },
-  "require": {
-    "php": ">=7.0",
-    "guzzlehttp/guzzle": "^6.3@dev",
-    "tightenco/collect": "^5.7@dev",
-    "ext-json": "*"
-  }
+    "name": "kreait/php-boilerplate",
+    "description": "A boilerplate for new composer based PHP projects.",
+    "keywords": ["boilerplate", "skeleton"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0",
+        "friendsofphp/php-cs-fixer": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Package\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vendor\\Package\\": "tests"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.2"
+        },
+        "sort-packages": true
+    }
 }
