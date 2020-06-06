@@ -1,5 +1,6 @@
 <?php
-namespace Vendor\Package\Interfaces;
+
+namespace FiveM\Interfaces;
 
 use GuzzleHttp\Client;
 
@@ -12,16 +13,15 @@ use GuzzleHttp\Client;
  */
 interface HttpRequest
 {
-
     /**
      * Create a GuzzleHttp client object
      *
      * @param string $hostname Base URL of a sample request : (https://play.riveria.fr)
+     * @param int $port Base FXServer port : (30120)
      * @param bool $verify Verify SSL or not in request
      * @param string|null $authorization Sets the value of the Headers Authorization parameter.
-     * @return Client Returns the client object GuzzleHttp
      */
-    public function client(string $hostname = null, bool $verify = true, string $authorization = null): Client;
+    public function __construct(string $hostname = null, int $port = 30120, bool $verify = true, string $authorization = null);
 
     /**
      * Retrieves the configured GuzzleHttp instance
@@ -57,7 +57,7 @@ interface HttpRequest
     public function put(string $url, array $content = []): string;
 
     /**
-     * Allows to make a DELETE request to a link
+     * Permet d'effectuer une requst DELETE vers un lien
      *
      * @param string $url Link of the request to be made
      * @return string Return a result of reponse GuzzleHttp

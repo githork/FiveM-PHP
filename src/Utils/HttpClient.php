@@ -1,15 +1,17 @@
 <?php
-namespace Vendor\Package\Utils;
+
+namespace FiveM\Utils;
 
 
+use FiveM\Interfaces\HttpRequest;
 use GuzzleHttp\Client;
-use Vendor\Package\Interfaces\HttpRequest;
+
 
 /**
  * Class HttpClient
  * @package Vendor\Package\Utils
  */
-abstract class HttpClient implements HttpRequest
+class HttpClient implements HttpRequest
 {
 
     /**
@@ -31,14 +33,14 @@ abstract class HttpClient implements HttpRequest
      * Create a GuzzleHttp client object
      *
      * @param string $hostname Base URL of a sample request : (https://play.riveria.fr)
+     * @param int $port Base FXServer port : (30120)
      * @param bool $verify Verify SSL or not in request
      * @param string|null $authorization Sets the value of the Headers Authorization parameter.
-     * @return Client Returns the client object GuzzleHttp
      */
-    public function client(string $hostname = null, bool $verify = true, string $authorization = null): Client
+    public function __construct(string $hostname = null, int $port = 30120, bool $verify = true, string $authorization = null)
     {
         if (!empty($hostname))
-            $settings = ['base_uri' => $hostname];
+            $settings = ['base_uri' => sprintf("http://%s:%s/", $hostname, $port)];
         else
             $settings = ['base_uri' => $this->uri];
         if (!empty($authorization))
@@ -55,8 +57,6 @@ abstract class HttpClient implements HttpRequest
                 'Content-Type' => 'application/json',
             ])
         ]));
-
-        return $this->instance;
     }
 
     /**
@@ -101,7 +101,7 @@ abstract class HttpClient implements HttpRequest
      */
     public function put(string $url, array $content = []): string
     {
-        return $this->instance->put($url,['json' => $content])->getBody()->getContents();
+        return $this->instance->put($url, ['json' => $content])->getBody()->getContents();
     }
 
     /**

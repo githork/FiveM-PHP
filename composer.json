@@ -4,7 +4,13 @@
     "type": "library",
     "require": {
         "tightenco/collect": "^7.12",
-        "guzzlehttp/guzzle": "^6.5"
+        "guzzlehttp/guzzle": "^6.5",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
     },
     "authors": [
         {

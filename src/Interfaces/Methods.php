@@ -1,7 +1,9 @@
 <?php
 
 
-namespace Vendor\Package\Interfaces;
+namespace FiveM\Interfaces;
+
+use Players;
 
 /**
  * Interface Methods
@@ -15,16 +17,17 @@ interface Methods
     /**
      * Get players lists and infos
      *
+     * @param bool $pretty Better format
      * @return array
      */
-    public function all(): array;
+    public function all(bool $pretty = true): array;
 
     /**
      * Get players lists
      *
-     * @return array
+     * @return Players[]
      */
-    public function players(): array;
+    public function players();
 
     /**
      * Get resources lists
